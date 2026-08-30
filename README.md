@@ -1,5 +1,7 @@
 # FraudLens AI – Intelligent Invoice Matching & Fraud Detection System
 
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https%3A%2F%2Fgithub.com%2Fshreya22-cloud%2FAutomated-Invoice-Matching)
+
 **FraudLens AI** is an AI-powered Accounts Payable (AP) automation and financial fraud intelligence platform designed to ingest supplier invoices, extract structured fields, perform 3-way matching against Purchase Orders (PO) and Goods Receipt Notes (GRN), detect duplicate and anomalous billing behavior, and provide explainable risk analysis for financial administrators.
 
 ---
