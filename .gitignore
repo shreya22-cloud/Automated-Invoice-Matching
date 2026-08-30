@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.db
+
+# JavaScript
+node_modules/
+dist/
+
+# Runtime files and uploaded documents
+*.log
+backend/uploads/
+
+# Local environment configuration
+.env
+.env.*
+!.env.example

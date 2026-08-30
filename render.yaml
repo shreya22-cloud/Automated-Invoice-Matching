@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: fraudlens-ai
+    runtime: docker
+    healthCheckPath: /docs
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
