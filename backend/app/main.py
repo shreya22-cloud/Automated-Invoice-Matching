@@ -77,8 +77,13 @@ def startup_event():
     finally:
         db.close()
 
+frontend_dist = Path(__file__).resolve().parents[2] / "frontend" / "dist"
+print(f"[DEBUG] frontend_dist resolved path: {frontend_dist} | is_dir: {frontend_dist.is_dir()}")
+
 @app.get("/")
 def root():
+    if frontend_dist.is_dir() and (frontend_dist / "index.html").is_file():
+        return FileResponse(frontend_dist / "index.html")
     return {
         "project": settings.PROJECT_NAME,
         "status": "online",
@@ -94,12 +99,8 @@ async def global_exception_handler(request: Request, exc: Exception):
         content={"detail": "An internal server error occurred. Please refer to system logs."}
     )
 
-# The production Docker image includes the Vite build alongside this API.  This
-# fallback keeps React routes (for example /invoices) working when opened
-# directly, while development continues to use Vite's own development server.
-frontend_dist = Path(__file__).resolve().parents[2] / "frontend" / "dist"
-
 if frontend_dist.is_dir():
+    app.mount("/assets", StaticFiles(directory=frontend_dist / "assets"), name="assets")
     @app.get("/{path:path}", include_in_schema=False)
     async def serve_frontend(path: str):
         requested_file = (frontend_dist / path).resolve()
